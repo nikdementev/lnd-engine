@@ -5,7 +5,7 @@ const { networkAddressFormatter } = require('../utils')
 /**
  * Interval between polls, in milliseconds
  * @constant
- * @type {Number}
+ * @type {number}
  */
 const INTERVAL = 5000
 
