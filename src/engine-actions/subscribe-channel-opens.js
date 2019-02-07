@@ -17,7 +17,7 @@ const INTERVAL = 5000
  * @param {object} channel channel object from LND
  * @return {object} Channel with standard field names
  */
-function scrubChannel (channel) {
+function normalizeChannel (channel) {
   return {
     chanId: channel.chanId,
     active: channel.active,
@@ -38,7 +38,7 @@ async function getOpenChannels ({ client }) {
   const { channels } = await listChannels({ client })
 
   return channels.reduce((map, channel) => {
-    map.set(channel.chanId, scrubChannel(channel))
+    map.set(channel.chanId, normalizeChannel(channel))
     return map
   }, new Map())
 }
