@@ -76,12 +76,19 @@ function subscribeChannelOpens (emitter = new EventEmitter(), channels = new Map
   const { client } = this
 
   setTimeout(async () => {
-    const newChannels = await getNewChannels(channels, { client })
+    try {
+      var newChannels = await getNewChannels(channels, { client })
+    } catch (err) {
+      this.logger.error(`Error while getting new channels for channel subscription: ${err}`, { error: err })
+      // reset the timer to try again
+      return this.subscribeChannelOpens(this, emitter, channels)
+    }
 
     for (var channel of newChannels.values()) {
       emitter.emit('open', channel)
     }
 
+    // merge the new channels in to our existing channel map
     channels = new Map([...channels, ...newChannels])
 
     // reset our timer by calling the outer function again
