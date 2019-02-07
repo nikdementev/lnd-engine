@@ -31,6 +31,7 @@ const unlockWallet = require('./unlock-wallet')
 const getPaymentPreimage = require('./get-payment-preimage')
 const isPaymentPendingOrComplete = require('./is-payment-pending-or-complete')
 const getStatus = require('./get-status')
+const subscribeChannelOpens = require('./subscribe-channel-opens')
 
 module.exports = {
   validationDependentActions: {
@@ -63,7 +64,8 @@ module.exports = {
     getMaxChannel,
     withdrawFunds,
     getPaymentPreimage,
-    isPaymentPendingOrComplete
+    isPaymentPendingOrComplete,
+    subscribeChannelOpens
   },
   validationIndependentActions: {
     createWallet,
