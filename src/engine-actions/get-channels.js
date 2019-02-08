@@ -7,7 +7,7 @@ const { networkAddressFormatter } = require('../utils')
 /**
  * @typedef {NormalizedChannel}
  * @type {object}
- * @property {string}  chanId            Unique ID of the channel
+ * @property {string}  channelId            Unique ID of the channel
  * @property {string}  remoteAddress     Payment Channel Network address of the peer with whom the channel exists
  * @property {string}  openTransaction   Transaction that represents the opening of the channel
  * @property {string}  closeTransaction  Transaction that closed the channel (if it is closed)
@@ -25,7 +25,7 @@ const { networkAddressFormatter } = require('../utils')
  */
 function normalizeChannel (channel) {
   return {
-    chanId: channel.chanId,
+    channelId: channel.chanId,
     active: channel.active,
     remoteAddress: networkAddressFormatter.serialize({ publicKey: channel.remotePubkey }),
     openTransaction: channel.channelPoint,
@@ -88,6 +88,9 @@ async function getChannels () {
   // merge open and closed channels, with closed channels overwriting
   // open ones since they contain more data (close transactions)
   const channels = new Map([...openChannels, ...closedChannels])
+
+  // return an array of all channels
+  return Array.from(channels.values())
 }
 
 module.exports = getChannels
