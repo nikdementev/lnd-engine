@@ -65,7 +65,7 @@ module.exports = {
     withdrawFunds,
     getPaymentPreimage,
     isPaymentPendingOrComplete,
-    getChannels,
+    getChannels
   },
   validationIndependentActions: {
     createWallet,

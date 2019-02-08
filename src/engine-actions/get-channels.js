@@ -72,7 +72,7 @@ async function getClosedChannels ({ client }) {
 
 /**
  * Returns all channels, both open and closed (but not pending)
- * @return {Array<NormalizedChannel>} 
+ * @return {Array<NormalizedChannel>}
  */
 async function getChannels () {
   const { client } = this
